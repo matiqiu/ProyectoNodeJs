@@ -15,5 +15,12 @@
   "bugs": {
     "url": "https://github.com/matiqiu/ProyectoNodeJs/issues"
   },
-  "homepage": "https://github.com/matiqiu/ProyectoNodeJs#readme"
+  "homepage": "https://github.com/matiqiu/ProyectoNodeJs#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "helmet": "^4.6.0",
+    "mongoose": "^5.13.7",
+    "morgan": "^1.10.0"
+  }
 }
