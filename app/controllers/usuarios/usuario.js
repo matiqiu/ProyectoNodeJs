@@ -23,3 +23,5 @@ module.exports = {
     GetUsuario,
     NewUsuario
 }
+
+//test
