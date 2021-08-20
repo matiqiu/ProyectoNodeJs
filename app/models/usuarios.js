@@ -24,4 +24,9 @@ const usuariosSchema = new Schema({
     versionKey: false
 })
 
+usuariosSchema.methods.toJSON = function(){
+    const {clave, ...usuario} = this.toObject()
+    return usuario
+}
+
 module.exports = mongoose.model('Usuarios', usuariosSchema, 'Usuarios')

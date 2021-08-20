@@ -1,4 +1,5 @@
 const Usuario = require('../../models/usuarios')
+const {generaJWT} = require('../../helpers/generarToken')
 
 async function GetUsuarios() {
     let data = await Usuario.find({})
@@ -21,20 +22,47 @@ async function NewUsuario(user) {
 async function UpdateUsuario(usuario, user) {
     const usuarioEncontrado = await GetUsuario(usuario)
     let prueba = await Usuario.findOne({ usuario: usuario })
-    //if (usuarioEncontrado) {
-        console.log({usuario: usuario})
-        let data = await Usuario.updateOne({usuario: usuario}, {$set:{email: user.email}})
+    if (usuarioEncontrado) {
+        console.log({ usuario: usuario })
+        let data = await Usuario.updateOne({ usuario: usuario }, { $set: { email: user.email } })
         return data
-    /* } else {
-        console.log("No se encontró ningun registro")
-    }     */
+    } else {
+        return ("No se encontró ningun registro")
+    }
+}
+
+async function DeleteUsuario (usuario) {
+    const usuarioEncontrado = await GetUsuario(usuario)
+    if(usuarioEncontrado) {
+        let data  = await Usuario.deleteOne({usuario})
+        return data
+    } else {
+        return ("No se encontró ningun registro")
+    }
+}
+
+const LoginUsuario = async (req,res)=>{
+    const {email, clave} = req.body
+    const user = await Usuario.findOne({email,clave})
+    if(!user){
+        return res.status(400).json({
+            mensaje:"Login Incorrecto"
+        })
+    }
+    const token = await generaJWT(user.email)
+    res.json({
+        usuario:user.email,
+        token
+    })
 }
 
 module.exports = {
     GetUsuarios,
     GetUsuario,
     NewUsuario,
-    UpdateUsuario
+    UpdateUsuario,
+    DeleteUsuario,
+    LoginUsuario
 }
 
 //test
