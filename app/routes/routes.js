@@ -7,5 +7,4 @@ const app = express()
 
 app.use(require('../controllers/usuarios/usuario.route'))
 
-
 module.exports = app
