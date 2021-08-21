@@ -6,4 +6,6 @@ const app = express()
  */
 
 
+ app.use(require('../controllers/categorias/categoria.route'))
+
 module.exports = app

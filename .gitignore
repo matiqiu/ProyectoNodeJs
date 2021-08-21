@@ -1,2 +1,8 @@
 node_modules/
+<<<<<<< Updated upstream
 trabajoFinal.txt
+=======
+app/config/
+.env
+
+>>>>>>> Stashed changes
