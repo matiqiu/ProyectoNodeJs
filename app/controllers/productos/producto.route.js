@@ -72,6 +72,7 @@ app.post("/api/productos", [
     check('idProducto', 'El id es obligatorio').not().isEmpty(),
     check('nombre', 'El nombre es obligatorio').not().isEmpty(),
     check('nombre', 'Ingrese nombre superior a 3 caracteres').isLength({ min: 4 }),
+    //check('imagen', 'Ingrese una imagen valida').isURL,
     validacionesCampos
 ], newProducto)
 
